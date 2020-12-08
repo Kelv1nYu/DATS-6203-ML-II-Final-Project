@@ -4,8 +4,8 @@
 
 Please run our code in this sequence:
 
-Preprocessing.py
+* Preprocessing.py
 
-Model.py
+* Model.py
 
-check.py
+* check.py
