@@ -432,13 +432,13 @@ def predict_and_save(input_ds, generator_model, output_path):
         res.save(f'{output_path}{str(i)}.jpg')
         i += 1
 
-
+# check path
 if not os.path.exists('images'):
     os.makedirs('images')
 
 predict_and_save(photo_eval, monet_generator, os.getcwd() + '/images/')
 
-# evaluate cycle
+# evaluate cycle (6-9)
 
 # P->M->P
 fig, axes = plt.subplots(4, 3, figsize=(22, (4 * 6)))
