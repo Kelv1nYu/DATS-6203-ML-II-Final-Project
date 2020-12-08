@@ -4,10 +4,8 @@
 
 Please run our code in this sequence:
 
-.py
+Preprocessing.py
 
-MLP.py
-
-CNN.py
+Model.py
 
 check.py
