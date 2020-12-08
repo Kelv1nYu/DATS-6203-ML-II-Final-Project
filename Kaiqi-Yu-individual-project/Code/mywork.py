@@ -14,6 +14,7 @@ import tensorflow_addons as tfa
 from tensorflow.keras.callbacks import Callback
 import matplotlib.pyplot as plt
 
+# --- My work ---
 AUTOTUNE = tf.data.experimental.AUTOTUNE
 strategy = tf.distribute.get_strategy()
 
@@ -90,7 +91,7 @@ def get_dataset(filenames, augment=None, repeat=True, batch_size=1):
 
     return dataset
 
-
+# --- Shared Work ---
 # Model functions
 def encoder_block(filters, size=3, strides=2, apply_instancenorm=True):
     initializer = tf.random_normal_initializer(0., 0.02)
@@ -366,6 +367,7 @@ with strategy.scope():
         identity_loss_fn = identity_loss
     )
 
+# --- My Work ---
 # Monitor
 class GANMonitor(Callback):
 
@@ -414,7 +416,7 @@ def create_gif(images_path, gif_path):
 
 
 # train
-cycle_gan_model.fit(tf.data.Dataset.zip((monet_ds, photo_ds)), epochs=10, callbacks=[GANMonitor()])
+cycle_gan_model.fit(tf.data.Dataset.zip((monet_ds, photo_ds)), epochs=12, callbacks=[GANMonitor()])
 
 # create gif
 create_gif(os.getcwd() + '/monet/*.png', 'monet.gif')
@@ -432,13 +434,13 @@ def predict_and_save(input_ds, generator_model, output_path):
         res.save(f'{output_path}{str(i)}.jpg')
         i += 1
 
-
+# check path
 if not os.path.exists('images'):
     os.makedirs('images')
 
 predict_and_save(photo_eval, monet_generator, os.getcwd() + '/images/')
 
-# evaluate cycle
+# evaluate cycle (6-9)
 
 # P->M->P
 fig, axes = plt.subplots(4, 3, figsize=(22, (4 * 6)))
